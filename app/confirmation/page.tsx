@@ -28,7 +28,7 @@ export default function Home() {
                         type="text"
                         className="border-2 border-black p-2"
                         value={name}
-                        placeholder="Jaden Hou"
+                        placeholder="ex. John Doe"
                         onChange={(e) => setName(e.target.value)}
                     />
 
