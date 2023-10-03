@@ -1,7 +1,7 @@
 import { google } from "googleapis";
 export async function POST(req: Request, res: Response) {
     const body = await req.json();
-    
+
     const auth = new google.auth.JWT(
         process.env.CLIENT_EMAIL,
         undefined,
@@ -20,19 +20,22 @@ export async function POST(req: Request, res: Response) {
     let rows = response.data.values;
     const id = body.id;
     const index = rows?.findIndex((val) => val[1] === id);
-    if (!index) return new Response("not found", {
-        status: 404
-    });
+    if (!index)
+        return new Response("not found", {
+            status: 404,
+        });
 
-    if (rows && rows[index][3] + " " + rows[index][4] != body.name) return new Response("incorrect name", {
-        status: 400
-    });
+    if (rows && rows[index][3] + " " + rows[index][4] != body.name)
+        return new Response("incorrect name", {
+            status: 400,
+        });
 
-    if (rows && rows[index][2] != "") return new Response("already confirmed", {
-        status: 409
-    });
+    if (rows && rows[index][2] != "")
+        return new Response("already confirmed", {
+            status: 409,
+        });
     const range = `Sheet1!C${index + 1}`;
-    
+
     const r = await sheets.spreadsheets.values.update({
         spreadsheetId: process.env.SHEET_ID,
         range,
