@@ -11,21 +11,24 @@ export default function Home() {
     return (
         <main className="w-screen h-screen">
             <div className="max-w-3xl w-11/12 mx-auto flex flex-col items-center">
-                <h1>DECA Membership Confirmation</h1>
+                <h1 className="text-3xl">DECA Membership Confirmation</h1>
                 <p>
                     By entering your name into the field below, you are
-                    confirming that you want to join DECA and will{" "}
+                    confirming that you commit to joining DECA and will{" "}
                     <span className="font-bold">
                         pay your $20 dollar membership
                     </span>{" "}
                     due fee.
+                    <br />
+                    Make sure to capitalize and space your name correctly.
                 </p>
                 <div className="space-x-2">
-                    <label>Name</label>
+                    <label>Full Name</label>
                     <input
                         type="text"
                         className="border-2 border-black p-2"
                         value={name}
+                        placeholder="Jaden Hou"
                         onChange={(e) => setName(e.target.value)}
                     />
 
